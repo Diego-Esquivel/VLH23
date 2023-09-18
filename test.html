@@ -1,0 +1,29 @@
+<body>
+<script>
+    function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(showPosition,()=>{console.log("Geolocation is not supported by this browser.")},{enableHighAccuracy:true});
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
+}
+
+function showPosition(position) {
+  console.log("Latitude: " + position.coords.latitude +
+  "\nLongitude: " + position.coords.longitude);
+}
+
+function onsub(){
+    navigator.permissions.query({ name: "geolocation" }).then((result) => {
+  if (result.state === "granted") {
+    pass
+  } else if (result.state === "prompt") {
+    getLocation();
+  }
+  // Don't do anything if the permission was denied.
+});
+}
+if(window.addEventListener) window.addEventListener("load",()=>{setInterval(onsub,200)}, false);
+else if(window.attachEvent) window.attachEvent("onload", ()=>{setInterval(onsub,200)});
+</script>
+</body>

@@ -1,0 +1,57 @@
+
+#map {
+    width: 95%;
+    height: 450px;
+    background: grey;
+    position:fixed !important;
+  inset:0 !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+  min-width:0 !important;
+  max-width:none !important;
+  min-height:0 !important;
+  max-height:none !important;
+  width:100% !important;
+  height:100% !important;
+  transform:none !important;
+
+  /* intentionally not !important */
+  object-fit:contain;
+}
+
+#userPanel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 200px;
+  height: 100%;
+  padding: 36px;
+  box-sizing: border-box;
+  background-color: rgba(240,248,255, .5);
+  overflow-y: scroll;
+}
+#userPanel::-webkit-scrollbar{
+  background-color: rgba(240,248,255, .5);
+}
+
+#test{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20%;
+  min-width: 200px;
+  height: 80%;
+  padding: 20px;
+  margin:.5rem;
+  box-sizing: border-box;
+  background-color: rgba(240,248,255, .5);
+  
+}
+
+#minmaxButton{
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 32px;
+}
