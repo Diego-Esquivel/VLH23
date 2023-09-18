@@ -4,14 +4,18 @@ var originobject = [];
 const waypoints = [
 
 ];
-
+var mostrecentbattery = "100";
 navigator.getBattery().then((battery) => {
   let temp = document.getElementById("batterytext");
   temp.innerHTML = "<b>Battery: " + (battery.level * 100)+"%</b>" ;
+  mostrecentbattery = (battery.level * 100).toString()
+  console.log(mostrecentbattery)
 })
 navigator.getBattery().then((battery) => {
   battery.onlevelchange = () => {
     document.getElementById("batterytext").innerText = "Battery: " + (battery.level * 100)+"%";
+    mostrecentbattery = (battery.level * 100)
+    console.log(mostrecentbattery)
   };
 });
 
@@ -116,7 +120,7 @@ function calculateRouteFromAtoB(platform) {
       'ev[auxiliaryConsumption]':'1.8',
       'ev[ascent]':'9',
       'ev[descent]':'4.3',
-      'ev[initialCharge]':'99',
+      'ev[initialCharge]':mostrecentbattery,
       'ev[maxCharge]':'99',
       'ev[chargingCurve]':'0,239,32,199,56,167,60,130,64,111,68,83,72,55,76,33,78,17,80,1',
       'ev[maxChargingVoltage]':'400',
@@ -159,7 +163,8 @@ function onSuccess(result) {
   console.log(EVorigin)
   map.setCenter(EVorigin);
   map.setZoom(20);
-  
+  let temp = document.getElementById("batteryestimate");
+  temp.innerHTML = "<b>Estimated Use: " + Math.floor((result.routes[0].sections[0].departure.charge - result.routes[0].sections[0].arrival.charge)+1)+"%</b>" ;
   // ... etc.
   
 }
